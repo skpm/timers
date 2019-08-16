@@ -21,18 +21,30 @@ var setInterval = function(
     coscript.scheduleWithRepeatingInterval_jsFunction(
       (delay || 0) / 1000,
       function() {
-        func(
-          param1,
-          param2,
-          param3,
-          param4,
-          param5,
-          param6,
-          param7,
-          param8,
-          param9,
-          param10
-        );
+        try {
+          func(
+            param1,
+            param2,
+            param3,
+            param4,
+            param5,
+            param6,
+            param7,
+            param8,
+            param9,
+            param10
+          );
+        } catch (err) {
+          if (
+            typeof process !== "undefined" &&
+            process.listenerCount &&
+            process.listenerCount("uncaughtException")
+          ) {
+            process.emit("uncaughtException", err, "uncaughtException");
+          } else {
+            throw err;
+          }
+        }
       }
     )
   );
