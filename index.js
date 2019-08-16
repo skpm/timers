@@ -1,6 +1,6 @@
-var timeout = require('./timeout')
-var interval = require('./interval')
-var immediate = require('./immediate')
+var timeout = require("./timeout");
+var interval = require("./interval");
+var immediate = require("./immediate");
 
 module.exports = {
   setTimeout: timeout.setTimeout,
@@ -9,4 +9,4 @@ module.exports = {
   clearImmediate: immediate.clearImmediate,
   setInterval: interval.setInterval,
   clearInterval: interval.clearInterval
-}
+};
